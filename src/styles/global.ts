@@ -7,10 +7,26 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  input {
+    all: unset;
+  }
+
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
+  a {
+    all: unset;
+    cursor: pointer
+  }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    font-size: '1rem';
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    letter-spacing: .3px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({ theme }) => theme.colors.background[1]};
