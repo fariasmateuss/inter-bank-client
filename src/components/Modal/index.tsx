@@ -1,30 +1,18 @@
 import { ReactNode } from 'react';
 
-import { CustomCard } from './styles';
+import { CustomModal } from './styles';
 
-type CardProps = {
+type ModalProps = {
   width: string;
   height: string;
   noShadow: boolean;
-  noBorder: boolean;
   children?: ReactNode;
 };
 
-export function Modal({
-  width,
-  height,
-  noShadow,
-  noBorder,
-  children,
-}: CardProps) {
+export function Modal({ width, height, noShadow, children }: ModalProps) {
   return (
-    <CustomCard
-      width={width}
-      height={height}
-      noShadow={noShadow}
-      noBorder={noBorder}
-    >
+    <CustomModal width={width} height={height} noShadow={noShadow}>
       {children}
-    </CustomCard>
+    </CustomModal>
   );
 }

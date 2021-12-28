@@ -21,7 +21,7 @@ export function SignUp() {
   return (
     <Wrapper>
       <Background />
-      <Modal width="403px" height="auto" noShadow={false} noBorder>
+      <Modal width="403px" height="auto" noShadow={false}>
         <img src={logo} alt="Bank Inter" />
 
         <ModalForm onSubmit={handleSubmit}>

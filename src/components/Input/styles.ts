@@ -12,14 +12,14 @@ export const CustomInput = styled.div`
     line-height: 15px;
 
     margin-bottom: 4px;
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme }) => theme.colors.gray[1]};
   }
 
   input {
     font-size: 0.875rem;
     line-height: 17px;
 
-    background: #f5f6fa;
+    background: ${({ theme }) => theme.colors.background[3]};
     border-radius: 4px;
     border: none;
 

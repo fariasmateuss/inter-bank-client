@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
 
-type CardProps = {
+type CustomModalProps = {
   width: string;
   height: string;
   noShadow: boolean;
-  noBorder: boolean;
 };
 
-export const CustomCard = styled.div<CardProps>`
+export const CustomModal = styled.div<CustomModalProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   background: ${({ theme }) => theme.colors.background[1]};
@@ -16,11 +15,6 @@ export const CustomCard = styled.div<CardProps>`
     !noShadow &&
     css`
       box-shadow: 0px 5px 15px 1px rgba(0, 0, 0, 0.1);
-    `}
-  ${({ noBorder }) =>
-    !noBorder &&
-    css`
-      border: 1px solid ${({ theme }) => theme.colors.primary};
     `}
 
   display: flex;

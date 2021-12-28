@@ -10,7 +10,6 @@ export const CustomButton = styled.button`
 
   color: ${({ theme }) => theme.colors.background[1]};
   background: ${({ theme }) => theme.colors.primary};
-  border: 1px solid ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
 
   margin-bottom: 20px;
