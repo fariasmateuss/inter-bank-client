@@ -21,6 +21,16 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: ${({ theme }) => theme.colors.gray[2]};
+  }
+
+
   body {
     font-size: '1rem';
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,7 +39,8 @@ export const GlobalStyles = createGlobalStyle`
     letter-spacing: .3px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: ${({ theme }) => theme.colors.background[1]};
+    background-color: ${({ theme }) => theme.colors.background[2]};
+    color: grey;
   }
 
   code {
@@ -37,5 +48,11 @@ export const GlobalStyles = createGlobalStyle`
       monospace;
     color: #7cd4f1;
     font: inherit;
+  }
+
+  @media (max-width: 720px) {
+    html {
+      font-size: 87.5%;
+    }
   }
 `;
