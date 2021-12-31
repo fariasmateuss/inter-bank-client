@@ -1,11 +1,13 @@
+import { useEffect, useState } from 'react';
 import { FiDollarSign } from 'react-icons/fi';
 
 import { formatPrice } from '@utils/formatPrice';
 import { formatDate } from '@utils/formatDate';
+import { api } from '@services/api';
 
 import { Wrapper, Container } from './styles';
 
-type StatementProps = {
+type Transaction = {
   user: {
     firstName: string;
     lastName: string;
@@ -15,12 +17,11 @@ type StatementProps = {
   updatedAt: Date;
 };
 
-export function AllTransactions({
-  user,
-  value,
-  type,
-  updatedAt,
-}: StatementProps) {
+type Statement = {
+  transactions: Transaction[];
+};
+
+export function Transactions({ user, value, type, updatedAt }: Transaction) {
   return (
     <Container type={type}>
       <span>
@@ -42,33 +43,23 @@ export function AllTransactions({
   );
 }
 
-export function Statement() {
-  const transactions: StatementProps[] = [
-    {
-      user: {
-        firstName: `John`,
-        lastName: `Doe`,
-      },
-      value: 25000,
-      type: `paid`,
-      updatedAt: new Date(),
-    },
-    {
-      user: {
-        firstName: `Mateus`,
-        lastName: `V. Farias`,
-      },
-      value: 30000,
-      type: `received`,
-      updatedAt: new Date(),
-    },
-  ];
+export function Statements() {
+  const [statements, setStatements] = useState<Transaction[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await api.get<Statement>(`/pix/transactions`);
+      const { transactions } = response.data;
+
+      setStatements(transactions);
+    })();
+  }, [statements]);
 
   return (
     <Wrapper>
-      {transactions.length > 0 ? (
-        transactions.map(transaction => (
-          <AllTransactions key={transaction.value} {...transaction} />
+      {statements.length > 0 ? (
+        statements.map((statement, index) => (
+          <Transactions key={String(index)} {...statement} />
         ))
       ) : (
         <p>Ah... is empty!</p>
