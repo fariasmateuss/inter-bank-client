@@ -32,12 +32,6 @@ export const ModalForm = styled.form`
   flex: 1;
 `;
 
-export const Error = styled.span`
-  display: block;
-  color: ${({ theme }) => theme.colors.red};
-  margin-top: 8px;
-`;
-
 export const ModalBox = styled.div`
   display: flex;
   align-items: center;

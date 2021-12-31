@@ -7,15 +7,16 @@ import logo from '@assets/Inter-orange.png';
 import { Modal } from '@components/Modal';
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
-
+import { Error } from '@components/Error';
 import { useAuth } from '@hooks/useAuth';
 
-import { Wrapper, ModalBox, ModalForm, Error, Background } from './styles';
+import { Wrapper, ModalBox, ModalForm, Background } from './styles';
 
 export function SignIn() {
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const [inputError, setInputError] = useState(``);
+
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
@@ -25,25 +26,29 @@ export function SignIn() {
       email,
       password,
     };
-    const { id } = await signIn(credentials);
 
-    if (id) {
-      navigate(`/dashboard`);
+    if (!credentials.email || !credentials.password) {
+      setInputError(`Please fill out all fields`);
       return;
     }
 
-    setInputError(`User or password invalid`);
+    try {
+      await signIn(credentials);
+      navigate(`/dashboard`);
+    } catch {
+      setInputError(`Invalid email or password`);
+    }
   };
 
   return (
     <Wrapper>
-      <Background title="Inter Bank Background" />
+      <Background />
       <Modal width="403px" height="auto" noShadow={false}>
         <img src={logo} alt="Bank Inter" />
 
         <ModalForm onSubmit={handleSubmit}>
           <Input
-            fieldName="Name"
+            fieldName="Email"
             type="email"
             placeholder="Type your email"
             value={email}
@@ -57,7 +62,7 @@ export function SignIn() {
             onChange={e => setPassword(e.target.value)}
           />
 
-          {inputError && <Error>{inputError}</Error>}
+          {inputError && <Error showError={inputError} />}
 
           <ModalBox>
             <Button type="submit">Sign In</Button>
